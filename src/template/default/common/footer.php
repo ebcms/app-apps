@@ -1,4 +1,1 @@
-</div>
-</body>
-
-</html>
+{include footer@ebcms/web}

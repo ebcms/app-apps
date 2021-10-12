@@ -19,22 +19,21 @@ class App extends Common
         CacheInterface $cache,
         Parsedown $parsedown
     ) {
-        $name = $request->get('name');
-        if (!$package = $cache->get('package.' . str_replace('/', '.', $name))) {
-            $res = json_decode(file_get_contents('https://packagist.org/packages/' . $request->get('name') . '.json'), true);
+        if (!$package = $cache->get('package.' . $request->get('vendor') . '.' . $request->get('package'))) {
+            $res = json_decode(file_get_contents('https://packagist.org/packages/' . $request->get('vendor') . '/' . $request->get('package') . '.json'), true);
             $package = $res['package'];
-            $cache->set('package.' . str_replace('/', '.', $name), $package, 3600);
+            $cache->set('package.' . $request->get('vendor') . '.' . $request->get('package'), $package, 3600);
         }
 
         if ($package['type'] != 'ebcms-app') {
             return $this->failure('应用不存在~');
         }
 
-        if (!$readme = $cache->get('readme.' . str_replace('/', '.', $name))) {
+        if (!$readme = $cache->get('readme.' . $request->get('vendor') . '.' . $request->get('package'))) {
             $last = current($package['versions']);
             if ($last['dist']['type'] == 'zip') {
                 $readme = $this->getZipContentFromUrl($last['dist']['url']);
-                $cache->set('readme.' . str_replace('/', '.', $name), $readme, 3600);
+                $cache->set('readme.' . $request->get('vendor') . '.' . $request->get('package'), $readme, 3600);
             }
         }
 

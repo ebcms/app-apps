@@ -28,7 +28,3 @@
 
 <body>
     <div class="container-xxl">
-        <div class="mb-4 mt-3">
-            <div class="fs-3 mb-2 border-bottom border-2 border-dark pb-2 text-dark">应用大全</div>
-            <div class="text-muted fw-light">收集整理所有的ebcms应用</div>
-        </div>

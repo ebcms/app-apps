@@ -4,7 +4,8 @@
     "type": "ebcms-app",
     "license": "Apache-2.0",
     "require": {
-        "ebcms/web": "^2.0"
+        "ebcms/web": "^2.0",
+        "erusev/parsedown": "^1.7"
     },
     "autoload": {
         "psr-4": {

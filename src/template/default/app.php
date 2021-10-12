@@ -1,3 +1,10 @@
+<?php
+$site = [
+    'title' => $package['name'] . ' - 应用中心 - ' . $config->get('site.title@ebcms.web'),
+    'keywords' => $package['name'],
+    'description' => $package['description'],
+];
+?>
 {include common/header@ebcms/apps}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -97,7 +104,7 @@
             <h4>第二步：安装本应用</h4>
             <div>进入创建的项目目录，执行下面的代码安装该应用：</div>
             <pre><code>composer require {$package.name}</code></pre>
-            <h4 class="text-muted">（安装完毕）</h4>
+            <h4 class="text-muted">（完毕）</h4>
         </div>
     </div>
 </div>

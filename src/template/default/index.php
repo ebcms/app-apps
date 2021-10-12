@@ -1,3 +1,10 @@
+<?php
+$site = [
+    'title' => '应用中心 - ' . $config->get('site.title@ebcms.web'),
+    'keywords' => 'EBCMS应用中心',
+    'description' => 'EBCMS应用中心',
+];
+?>
 {include common/header@ebcms/apps}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">

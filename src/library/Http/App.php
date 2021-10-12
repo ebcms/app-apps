@@ -20,17 +20,21 @@ class App extends Common
         Parsedown $parsedown
     ) {
         $name = $request->get('name');
-        if (!$package = $cache->get('package.' . $name)) {
+        if (!$package = $cache->get('package.' . str_replace('/', '.', $name))) {
             $res = json_decode(file_get_contents('https://packagist.org/packages/' . $request->get('name') . '.json'), true);
             $package = $res['package'];
-            $cache->set('package.' . $name, $package, 3600);
+            $cache->set('package.' . str_replace('/', '.', $name), $package, 3600);
         }
 
-        if (!$readme = $cache->get('readme.' . $name)) {
+        if ($package['type'] != 'ebcms-app') {
+            return $this->failure('应用不存在~');
+        }
+
+        if (!$readme = $cache->get('readme.' . str_replace('/', '.', $name))) {
             $last = current($package['versions']);
             if ($last['dist']['type'] == 'zip') {
                 $readme = $this->getZipContentFromUrl($last['dist']['url']);
-                $cache->set('readme.' . $name, $readme, 3600);
+                $cache->set('readme.' . str_replace('/', '.', $name), $readme, 3600);
             }
         }
 

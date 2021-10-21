@@ -1,1 +1,1 @@
-{include footer@ebcms/web}
+{include common/footer@ebcms/web}

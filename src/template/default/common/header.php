@@ -1,1 +1,1 @@
-{include header@ebcms/web}
+{include common/header@ebcms/web}
